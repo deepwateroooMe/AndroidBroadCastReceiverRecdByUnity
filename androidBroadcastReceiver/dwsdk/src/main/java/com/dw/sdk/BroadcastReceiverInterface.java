@@ -1,4 +1,5 @@
-package com.deepwaterooo.sdk;
+package com.dw.sdk;
+// package com.unity3d.player;
 
 import android.content.Context;
 import android.content.Intent;

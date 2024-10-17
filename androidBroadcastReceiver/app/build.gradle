@@ -1,21 +1,20 @@
-plugins {
-    id 'com.android.library'
-}
+// plugins {
+//     // id 'com.android.library'
+//     id 'com.android.application'
+// }
+apply plugin: 'com.android.application'
 
 android {
     namespace 'com.deepwaterooo.sdk'
-    compileSdk 31
+    compileSdk 32
 
     defaultConfig {
         // applicationId "com.unity3d.player"
-        minSdk 25
-        targetSdk 31
+        minSdk 32
+        targetSdk 32
         versionCode 1
         versionName "1.0"
-
-//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -32,9 +31,4 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-
-    // implementation files('libs\\unity-classes.jar')
-    // testImplementation 'junit:junit:4.13.2'
-    // androidTestImplementation 'androidx.test.ext:junit:1.1.4'
-    // androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 }
