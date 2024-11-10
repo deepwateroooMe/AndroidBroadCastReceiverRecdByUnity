@@ -1,11 +1,13 @@
-% Created 2022-12-31 Sat 21:19
+% Created 2024-10-16 Wed 22:03
 \documentclass[9pt, b5paper]{article}
 \usepackage{xeCJK}
-\usepackage{minted}
 \usepackage[T1]{fontenc}
+\usepackage{bera}
 \usepackage[scaled]{beraserif}
 \usepackage[scaled]{berasans}
 \usepackage[scaled]{beramono}
+\usepackage[cache=false]{minted}
+\usepackage{xltxtra}
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{multirow}
@@ -18,15 +20,15 @@
 \usepackage{natbib}
 \usepackage{geometry}
 \geometry{left=1.2cm,right=1.2cm,top=1.5cm,bottom=1.2cm}
-\newminted{common-lisp}{fontsize=\footnotesize} 
 \usepackage[xetex,colorlinks=true,CJKbookmarks=true,linkcolor=blue,urlcolor=blue,menucolor=blue]{hyperref}
+\newminted{common-lisp}{fontsize=\footnotesize} 
 \author{deepwaterooo}
 \date{\today}
 \title{游戏通用功能底层逻辑Android SDK 封装}
 \hypersetup{
   pdfkeywords={},
   pdfsubject={},
-  pdfcreator={Emacs 27.2 (Org mode 8.2.7c)}}
+  pdfcreator={Emacs 28.2 (Org mode 8.2.7c)}}
 \begin{document}
 
 \maketitle
@@ -36,6 +38,9 @@
 \section{Unity BroadcastReceiver to receive android Broadcast}
 \label{sec-1}
 \begin{itemize}
+\item \textbf{自定义的广播可以收缩到，但是系统广播接收不到；}
+\item \textbf{如果静态广播接收不到，有可能是需要动态注册广播}
+\item 实现了 \textbf{【安卓SDK 注册系统静态，并转发给Unity 游戏端；Unity 游戏端，动态注册、向SDK 订阅，系统静态广播的转发】}
 \item 有几种不同的方法来实现:
 \begin{itemize}
 \item 已经实现了的接口的方式, 如:
@@ -46,8 +51,8 @@
 \item 这种需要借助接口来实现安卓SDK端Broadcast接收后的回调到游戏端
 \end{itemize}
 \end{itemize}
-\end{itemize}
-　　 - 缺点是:代码偶合太严重,不方便系统性的源码解偶复用与移植
+\item 缺点是:代码偶合太严重,不方便系统性的源码解偶复用与移植
+
 \begin{itemize}
 \item 本质上同样也是通过公用(安卓SDk与游戏端)接口的形式,但是可以解偶,借助游戏端AnroidJavaProxy帮助
 \begin{itemize}
@@ -55,17 +60,25 @@
 \item Todo: 游戏端是可以实现动态注册安卓广播,并可以发送广播的.这两块可以再测试加深一下
 \item 主要参考: \url{https://blog.csdn.net/yhx956058885/article/details/110949067} 原贴的作者华人应该是想要迷惑众生(或者是想要我们去思考),所以它的贴子里埋了无数的bug. 以后也该明白当搜索不到中文来解决问题,就直接搜英文.因为中文能够搜索到的,是想要把你推向的方向;中文搜索不到的,才是自己真正需要钻研该走的路,爱表哥,爱生活!!!
 \end{itemize}
+
 \item 其它搜索到的思路与印记还包括:
 \begin{itemize}
 \item \url{https://www.cnblogs.com/alps/p/11206465.html} 也是接口的方式,没再细看
 \item \url{http://jeanmeyblum.weebly.com/scripts--tutorials/communication-between-an-android-app-and-unity} 拐了拐
 \item \url{https://zditect.com/code/intercall-between-unity-and-android.html}
+\item \url{https://answers.unity.com/questions/953402/executing-c-code-on-boot-completed.html}
 \end{itemize}
-
-\item 这个项目里大概有三种不同实现设计的源码,但目前只测试运行通了一种(源项目接口方式的一种, + 这里静态广播的第二种),自己项目中需要的关于音量变化的静态广播
+\end{itemize}
+\item Todo: 游戏端是可以实现动态注册安卓广播,并可以发送广播的.这两块 \textbf{【TODO】：今天晚上、测试通过，并修改提交上去}
+\item 主要参考: \url{https://blog.csdn.net/yhx956058885/article/details/110949067} 原贴的作者华人应该是想要迷惑众生(或者是想要我们去思考),所以它的贴子里埋了无数的bug. 以后也该明白当搜索不到中文来解决问题,就直接搜英文.因为中文能够搜索到的,是想要把你推向的方向;中文搜索不到的,才是自己真正需要钻研该走的路,爱表哥,爱生活!!!
+\item 其它搜索到的思路与印记还包括:
 \begin{itemize}
-\item 没有删除其余待测试的,供自己改天再回来进一步地理解消化
+\item \url{https://www.cnblogs.com/alps/p/11206465.html} 也是接口的方式,没再细看
+\item \url{http://jeanmeyblum.weebly.com/scripts–tutorials/communication-between-an-android-app-and-unity} 拐了拐
+\item \url{https://zditect.com/code/intercall-between-unity-and-android.html}
+\item \url{https://answers.unity.com/questions/953402/executing-c-code-on-boot-completed.html}
 \end{itemize}
+\item 这个项目里大概有三种不同实现设计的源码,但目前只测试运行通了一种(源项目接口方式的一种, 和这里静态广播的第二种),自己项目中需要的关于音量变化的静态广播
 \end{itemize}
-% Emacs 27.2 (Org mode 8.2.7c)
+% Emacs 28.2 (Org mode 8.2.7c)
 \end{document}

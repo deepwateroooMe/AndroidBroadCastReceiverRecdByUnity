@@ -1,9 +1,10 @@
 apply plugin: 'com.android.library'
+// apply plugin: 'com.android.application'
 
 android {
-    namespace 'com.dw.sdk'
-    compileSdkVersion 32
-    buildToolsVersion '32.0.0'
+    // namespace 'com.dw.sdk'
+    compileSdkVersion 31
+    buildToolsVersion '31.0.0'
 
     // 亲爱的表哥的活宝妹，笨宝妹，看到2 年前的这个注释，狠想笑。。。
     // multiDexEnabled true // added for Bubbles game build 这个有待验证,不相信自己几年前的智商.....
@@ -12,15 +13,14 @@ android {
     //     sourceCompatibility JavaVersion.VERSION_8
     //     targetCompatibility JavaVersion.VERSION_8
     // }
-    
-    defaultConfig {
-        minSdk 32
-        //noinspection ExpiredTargetSdkVersion
-        targetSdk 32
-        // multiDexEnabled true
-// 好像是并没有用到上面的东西？暂时去掉 
-        // testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
+    //     defaultConfig {
+    //         // minSdk 31
+    //         // //noinspection ExpiredTargetSdkVersion
+    //         // targetSdk 31
+    //         // multiDexEnabled true
+    // // 好像是并没有用到上面的东西？暂时去掉 
+    //         // testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    //     }
 
     buildTypes {
         release {
@@ -36,10 +36,10 @@ android {
         doNotStrip '*/armeabi-v7a/*.so'
     }
 }
-dependencies {
-    // implementation 'androidx.appcompat:appcompat:1.7.0'
-    // implementation 'com.google.android.material:material:1.12.0'
-    // testImplementation 'junit:junit:4.13.2'
-    // androidTestImplementation 'androidx.test.ext:junit:1.2.1'
-    // androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
-}
+// dependencies {
+//     implementation files('libs/classes.jar')
+//     // compileOnly files('libs/classes.jar') // 好像说是不行，也可以自己测试一下
+//     // implementation 'androidx.appcompat:appcompat:1.7.0'
+//     // implementation 'com.google.android.material:material:1.12.0'
+// }
+

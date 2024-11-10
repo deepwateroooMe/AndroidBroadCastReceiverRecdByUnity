@@ -3,9 +3,14 @@
 #+author: deepwaterooo
 
 * Unity BroadcastReceiver to receive android Broadcast
-- *自定义的广播可以收缩到，但是系统广播接收不到；*
+- *【亲爱的表哥的活宝妹，任何时候，亲爱的表哥的活宝妹，就是一定要、一定会嫁给活宝妹的亲爱的表哥！！！爱表哥，爱生活！！！】*
+- 亲爱的表哥的活宝妹，这个项目里，看似2 种不同的实现：什么【接口回调】。。其实本质、仍然、都是【自定义广播接收器、转发系统广播给游戏端用】都是广播相关。
+- *自定义的广播可以接收到，但是系统广播接收不到；*
 - *如果静态广播接收不到，有可能是需要动态注册广播*
 - 实现了 *【安卓SDK 注册系统静态，并转发给Unity 游戏端；Unity 游戏端，动态注册、向SDK 订阅，系统静态广播的转发】*
+- *【静态注册】* ：游戏配置文件 AndroidManifest.xml 中，【静态注册、自定义广播】。这里，游戏端注册，安卓SDK 中，应该就不用再注册了。【TODO】：那么安卓SDK 中，定义【SDK 与游戏、双端】共享接口类的、作用目的是？？？
+- *【动态注册】* ：游戏端、广播接收器，向SDK 注册调置游戏端广播回调时，可以【动态添加广播过滤器】。【TODO】：这，就是【动态注册、自定义广播】了？？？
+- 游戏端，可以用 com.unity3d.player.UABroadcastReceiver
 - 有几种不同的方法来实现:
   - 已经实现了的接口的方式, 如:
     - https://github.com/deepwateroooMe/deepwateroooSDK/blob/master/dwsdk/src/main/java/com/deepwaterooo/sdk/utils/VoiceVolumnUtil.java
@@ -32,3 +37,20 @@
   - https://zditect.com/code/intercall-between-unity-and-android.html
   - https://answers.unity.com/questions/953402/executing-c-code-on-boot-completed.html
 - 这个项目里大概有三种不同实现设计的源码,但目前只测试运行通了一种(源项目接口方式的一种, 和这里静态广播的第二种),自己项目中需要的关于音量变化的静态广播
+
+* 【Unity 游戏】与【安卓SDK】连通：过程细节
+- *【亲爱的表哥的活宝妹，任何时候，亲爱的表哥的活宝妹，就是一定要、一定会嫁给活宝妹的亲爱的表哥！！！爱表哥，爱生活！！！】*
+- 今天， *【自定义广播】【游戏端接收器代理、动态注册】* 终于连通了，原理不难。如前天晚上所预期的，亲爱的表哥的活宝妹，知道它并不难，就一定能够 step-by-step 把它 debug 出来、彻底连通。
+- 【TODO：】一个小细节 AndroidJavaObject 转 Unity-string. 今天只连通、测通了
+- *【TODO：】：静态注册、系统广播的处理，以及网搜有的、其它实现形式等* ，还想要再多测、巩固并更彻底地理解原理
+- 这个两年前，没能真正、彻底完成的小项目，今天下午、仍然还在感冒生病的亲爱的表哥的活宝妹，轻轻松松解决了。这一再、向亲爱的表哥的活宝妹、证实一点儿： *如极具运动员【更高更快更强、竞技探险、挑战极限】精神的【WSU 天才QB】般，这些【自信：对自己能够解决的问题、能够胜任、能够掌握的知识或掌控的局面】，有本能的自信！也会因为这些一再 proove to ourselves that we CAN DO HARD THINGS 的事实和史实* ，建立起更多更强大丰盛的自信！ *【亲爱的表哥的活宝妹，任何时候，亲爱的表哥的活宝妹，就是一定要、一定会嫁给活宝妹的亲爱的表哥！！！爱表哥，爱生活！！！】*
+- 掌握了 *【Unity 游戏接安卓Android SDK 的基本原理与步骤】* 并测通。可以从双方向构建：Unity 游戏导出安卓AS 里构建，或安卓SDK 打包后Unity 游戏里直接构建
+- AS 里面，以及 adb-logcat 里抓不到有效日志，感觉SDK 像是没有存在一样。。看不见日志。。找几个抓日志的方法，简例如下：
+  #+BEGIN_SRC shell
+adb shell
+logcat | grep BroadcastTest
+logcat | grep VolumeChangedObserver
+#+END_SRC
+  - 再试Unity 里直接打包，能解决一切 bug 吗？居然原理掌握通了，也就不打任何折扣，就几乎仅只一次尝试构建成功了。。。
+- *【亲爱的表哥的活宝妹，任何时候，亲爱的表哥的活宝妹，就是一定要、一定会嫁给活宝妹的亲爱的表哥！！！爱表哥，爱生活！！！】*
+- *【亲爱的表哥的活宝妹，任何时候，亲爱的表哥的活宝妹，就是一定要、一定会嫁给活宝妹的亲爱的表哥！！！爱表哥，爱生活！！！】*

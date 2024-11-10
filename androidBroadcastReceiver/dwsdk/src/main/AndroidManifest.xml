@@ -1,32 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.dw.sdk"
-          android:versionCode="7"
-          android:versionName="3.2">
-  <!-- package="com.unity3d.player" -->
-
-  <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> -->
-  <!-- <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/> -->
-  <!-- <uses-permission android:name="android.permission.INTERNET"/> -->
-  <!-- <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/> -->
-
-  <!-- android:name=".DWApplication" -->
+          package="com.unity3d.player">
+  <!-- package="com.dw.sdk" -->
+  
   <application
-      android:allowBackup="true">
-      <!-- android:label="@string/app_name" -->
-      <!-- android:largeHeap="true" -->
-      <!-- android:supportsRtl="true"> -->
+      android:allowBackup="true"
+      android:supportsRtl="true">
 
-    <!-- 这个不需要 -->
-    <!-- <activity --> 
-    <!--     android:name=".utils.VoiceVolumnUtil" -->
-    <!--     android:exported="true" -->
-    <!--     android:theme="@style/Base.Theme.AppCompat"/> -->
-    <receiver android:name=".UABroadcastReceiver"
-              android:exported="true">
-      <!-- <intent-filter> -->
-      <!--   <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/> -->
-      <!-- </intent-filter> -->
-    </receiver>
+    <!-- <activity android:name=".SplashActivity" -->
+    <!--   android:exported="true"> -->
+    <!--   <intent-filter> -->
+    <!--     <action android:name="android.intent.action.MAIN"/> -->
+    <!--     <category android:name="android.intent.category.LAUNCHER"/> -->
+    <!--   </intent-filter> -->
+    <!-- </activity> -->
+
+    <!-- <receiver android:name=".UABroadcastReceiver" -->
+    <!--           android:exported="true"> -->
+    <!--   <intent-filter> -->
+    <!--     <action android:name="customdefinereceiver"/> -->
+    <!--   </intent-filter> -->
+    <!-- </receiver> -->
+    <!-- <action android:name="android.media.VOLUME_CHANGED_ACTION"/> -->
+    <!-- 上面的 action 感觉不对，如果是想要接收安卓系统关于音量的广播的话，网搜一下 -->
+    
   </application>
 </manifest>
